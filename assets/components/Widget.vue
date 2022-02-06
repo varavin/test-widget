@@ -20,7 +20,6 @@ export default defineComponent({
   data() {
     return {
       widgetData: {companyName: '-', currentPrice: 0, updatedTs: 0} as WidgetDataDto,
-      fetchIntervalMs: this.fetchInterval * 1000 as number
     }
   },
   created() {
@@ -53,7 +52,7 @@ export default defineComponent({
         console.log('An error has occurred while retrieving data:');
         console.log(error);
       }
-      setTimeout(() => this.fetchWidgetData(), this.fetchIntervalMs)
+      setTimeout(() => this.fetchWidgetData(), this.fetchInterval * 1000)
     },
   }
 });

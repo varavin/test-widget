@@ -1,6 +1,6 @@
 <template>
   <div>
-    <widget fetch-interval="10"></widget>
+    <widget :fetch-interval="10"></widget>
   </div>
 </template>
 <script lang="ts">
