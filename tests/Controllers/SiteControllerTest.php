@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace Tests\Controllers;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,7 +10,9 @@ class SiteControllerTest extends TestCase
     public function testIndex()
     {
         $controller = new SiteController();
-        $this->assertEquals(Response::HTTP_OK, $controller->index()->getStatusCode());
-        $this->assertStringContainsString('<script src="/build/', $controller->index()->getContent());
+        $response = $controller->index();
+
+        $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
+        $this->assertStringContainsString('<script src="/build/', $response->getContent());
     }
 }

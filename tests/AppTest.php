@@ -8,7 +8,10 @@ class AppTest extends TestCase
 {
     public function testInit()
     {
+        ob_start();
         $app = App::app();
-        $this->assertNotEmpty($app->getProjectRootDir());
+        ob_end_clean();
+
+        $this->assertStringStartsWith($app->getProjectRootDir(), __DIR__);
     }
 }

@@ -14,7 +14,12 @@ export default defineComponent({
         }
     },
     created() {
-        fetch('').then(() => {})
+        fetch('https://test-widget.local/api/widget_data').then((response) => {
+          console.log(response)
+
+
+
+        })
     }
 });
 </script>

@@ -25,6 +25,8 @@
         "symfony/dotenv": "^5.4",
         "twig/twig": "^3.3",
         "phpunit/phpunit": "^9.5",
-        "symfony/dependency-injection": "^5.4"
+        "symfony/dependency-injection": "^5.4",
+        "symfony/serializer": "^5.4",
+        "symfony/property-access": "^5.4"
     }
 }

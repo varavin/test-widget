@@ -16,6 +16,7 @@ use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Varavin\TestWidget\Controllers\ApiController;
 use Varavin\TestWidget\Controllers\SiteController;
+use Varavin\TestWidget\Misc\FinancialApiWrapper;
 use Varavin\TestWidget\Services\ApiService;
 
 class App
@@ -58,7 +59,8 @@ class App
         (new Dotenv())->load($this->projectRootDir . '/.env', $this->projectRootDir . '/.env.local');
 
         $this->containerBuilder = new ContainerBuilder();
-        $this->containerBuilder->register(self::SERVICE_API, ApiService::class)->addArgument(new ApiService());
+        $this->containerBuilder->register(self::SERVICE_API, ApiService::class)
+            ->addArgument(new FinancialApiWrapper());
         $this->containerBuilder->register(self::SERVICE_TWIG, Environment::class)
             ->addArgument(new FilesystemLoader($this->projectRootDir . '/templates'))
             ->addArgument(['runtime' => $this->projectRootDir . '/runtime/twig']);
@@ -67,8 +69,8 @@ class App
         $routes->add('index', new Route('/', [
             '_controller' => SiteController::class . '::index'
         ], [], [], '', [], ['GET']));
-        $routes->add('api/test', new Route('/api/test', [
-            '_controller' => ApiController::class . '::test',
+        $routes->add('api/test', new Route('/api/widget_data', [
+            '_controller' => ApiController::class . '::widgetData',
             'apiService' => $this->getService(self::SERVICE_API)
         ], [], [], '', [], ['GET']));
 
