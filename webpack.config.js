@@ -47,11 +47,12 @@ Encore
 
     .configureBabel((config) => {
         config.plugins.push('@babel/plugin-proposal-class-properties');
+        config.plugins.push('@babel/plugin-transform-runtime');
     })
 
     // enables @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'entry';
+        config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
 

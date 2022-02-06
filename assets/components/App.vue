@@ -1,25 +1,13 @@
 <template>
-    <div>
-        zxczzzzzz
-        {{ count }}
-    </div>
+  <div>
+    <widget fetch-interval="10"></widget>
+  </div>
 </template>
 <script lang="ts">
 import {defineComponent} from "vue";
+import Widget from "./Widget.vue";
+
 export default defineComponent({
-    setup() {
-        const count = 'test' as string
-        return {
-            count
-        }
-    },
-    created() {
-        fetch('https://test-widget.local/api/widget_data').then((response) => {
-          console.log(response)
-
-
-
-        })
-    }
+  components: {Widget},
 });
 </script>

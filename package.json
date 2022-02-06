@@ -1,6 +1,9 @@
 {
   "dependencies": {
-    "axios": "^0.25.0",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/runtime": "^7.17.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "core-js": "3",
     "es-promise": "^1.0.3",
     "es6-promise": "^4.2.8",
     "vue": "^3.2.29"

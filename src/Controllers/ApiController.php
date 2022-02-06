@@ -1,7 +1,6 @@
 <?php
 namespace Varavin\TestWidget\Controllers;
 
-use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Varavin\TestWidget\Misc\SerializerWrapper;
@@ -13,6 +12,6 @@ class ApiController
     {
         $widgetDataDto = $apiService->getWidgetData();
 
-        return new Response(SerializerWrapper::objectToJson($widgetDataDto));
+        return new JsonResponse(SerializerWrapper::objectToJson($widgetDataDto), Response::HTTP_OK, [], true);
     }
 }
