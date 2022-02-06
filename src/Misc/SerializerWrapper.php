@@ -7,10 +7,10 @@ use Symfony\Component\Serializer\Serializer;
 
 class SerializerWrapper
 {
-    public static function arrayToObject(array $array, string $className)
+    public static function jsonToObject(string $json, string $className)
     {
         $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
-        return $serializer->deserialize(json_encode($array), $className, 'json');
+        return $serializer->deserialize($json, $className, 'json');
     }
 
     public static function objectToJson($object): string
