@@ -1,27 +1,30 @@
 <?php
 namespace Varavin\TestWidget\Services;
 
+use Varavin\TestWidget\DataMappers\CompanyMapper;
+use Varavin\TestWidget\DataMappers\CompanyStockPriceMapper;
 use Varavin\TestWidget\Dto\WidgetDataDto;
-use Varavin\TestWidget\Misc\FinancialApiWrapper;
 
 class ApiService
 {
-    private $financialApiWrapper;
+    private $companyMapper;
 
-    public function __construct(FinancialApiWrapper $financialApiWrapper)
+    private $companyStockPriceMapper;
+
+    public function __construct(CompanyMapper $companyMapper, CompanyStockPriceMapper $companyStockPriceMapper)
     {
-        $this->financialApiWrapper = $financialApiWrapper;
+        $this->companyMapper = $companyMapper;
+        $this->companyStockPriceMapper = $companyStockPriceMapper;
     }
 
-    public function getWidgetData(): WidgetDataDto
+    public function getWidgetDataDto(): WidgetDataDto
     {
-        $randomCompany = $this->financialApiWrapper->getRandomCompany();
-
-        $companyStockPrice = $this->financialApiWrapper->getCompanyStockPrice($randomCompany->symbol);
+        $randomCompany = $this->companyMapper->findRandom();
+        $companyStockPrice = $this->companyStockPriceMapper->findBySymbol($randomCompany->getSymbol());
 
         $widgetDataDto = new WidgetDataDto();
-        $widgetDataDto->companyName = $randomCompany->name;
-        $widgetDataDto->currentPrice = $companyStockPrice->price;
+        $widgetDataDto->companyName = $randomCompany->getName();
+        $widgetDataDto->currentPrice = $companyStockPrice->getPrice();
         $widgetDataDto->updatedTs = time();
 
         return $widgetDataDto;

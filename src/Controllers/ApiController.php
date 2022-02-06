@@ -10,7 +10,7 @@ class ApiController
 {
     public function widgetData(ApiService $apiService): Response
     {
-        $widgetDataDto = $apiService->getWidgetData();
+        $widgetDataDto = $apiService->getWidgetDataDto();
 
         return new JsonResponse(SerializerWrapper::objectToJson($widgetDataDto), Response::HTTP_OK, [], true);
     }
